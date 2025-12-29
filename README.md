@@ -2,20 +2,6 @@
 This repository is focused on python programs for learning and solving algorithms. It is ideal for beginner Python programmers.
 
 
-# HashTable Implementation
-
-Overview
-A Python class implementing a basic hash table with separate chaining for collision resolution.
-
-## Methods
-- `__init__`: Initializes the hash table.
-- `hash(key)`: Computes a hash value for a given key.
-- `add(key, value)`: Adds a key-value pair to the table.
-- `remove(key)`: Removes a key-value pair from the table.
-- `lookup(key)`: Retrieves the value associated with a key.
-
-
-
 
 # Binary Search Implementation
 
