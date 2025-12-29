@@ -1,8 +1,8 @@
 def verify_card_number(card_number):
 
-    card_number = card_number.replace('-', '')
+    card_number = card_number.replace('-', '').replace(' ', '')
 
-    if ' ' in card_number:
+    if not card_number.isdigit():
         return 'INVALID!'
 
     reverse = str(card_number)[::-1]
@@ -24,4 +24,5 @@ def verify_card_number(card_number):
 
 print(verify_card_number('453914889'))
 print(verify_card_number('4111-1111-1111-1111'))
+
 print(verify_card_number('1234 5678 9012 3456'))
