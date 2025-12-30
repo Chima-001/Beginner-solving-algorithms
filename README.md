@@ -103,6 +103,6 @@ Path: 0 -> 2 -> 1 -> 5
 - The code uses a priority queue (implemented using a list) to efficiently select the next node to visit.
 
 
-## Contributing
+# Contributing
 
 Contributions are welcome! If you'd like to improve the codes or add new features, please submit a pull request.
