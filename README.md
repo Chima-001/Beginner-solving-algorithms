@@ -102,6 +102,113 @@ Path: 0 -> 2 -> 1 -> 5
 - If there is no edge between nodes `i` and `j`, `matrix[i][j]` should be set to `INF` (defined as `float('inf')`).
 - The code uses a priority queue (implemented using a list) to efficiently select the next node to visit.
 
+# Adjacency List to Matrix Converter
+
+## Overview
+Converts a graph from adjacency list (dictionary) to adjacency matrix (2D array).
+
+## Input/Output
+**Input**: Dictionary where keys = nodes, values = list of connected nodes  
+**Output**: 2D matrix where `matrix[i][j] = 1` means edge from i to j
+
+## Example
+```python
+{0: [1, 2], 1: [2], 2: [0, 3], 3: [2]}
+
+# Becomes:
+[[0, 1, 1, 0],
+ [0, 0, 1, 0],
+ [1, 0, 0, 1],
+ [0, 0, 1, 0]]
+```
+
+## Algorithm
+1. Get number of nodes from dictionary length
+2. Create n×n matrix filled with zeros
+3. Loop through each node and its neighbors, set `matrix[node][neighbor] = 1`
+4. Print and return matrix
+
+## Complexity
+- **Time**: O(n²) to create matrix + O(E) to fill edges
+- **Space**: O(n²)
+
+
+# Two Sum - Two Pointers
+
+## Overview
+Finds two numbers in a sorted array that add up to a target sum.
+
+## Input/Output
+**Input**: Sorted list + target sum  
+**Output**: The two numbers that sum to target (or None)
+
+## Example
+```python
+two_sum([1, 2, 3, 4, 6], 6)  # Returns [2, 4] or similar pair
+```
+
+## Algorithm
+1. Set `left = 0` and `right = n-1` (start and end)
+2. While left < right:
+   - If `nums[left] + nums[right] == target`: return pair
+   - If sum too small: move left pointer right (increases sum)
+   - If sum too large: move right pointer left (decreases sum)
+3. Return None if no pair found
+
+## Why It Works
+Sorted array means moving left pointer increases sum, moving right decreases it. Single pass finds the answer.
+
+## Complexity
+- **Time**: O(n) - one pass through array
+- **Space**: O(1) - only two pointers
+- **vs Brute Force**: O(n²) → O(n)
+
+
+# N-Queens - Backtracking
+
+## Overview
+Places N queens on N×N chessboard so no two queens attack each other (no shared row, column, or diagonal).
+
+## Input/Output
+**Input**: Integer n (board size)  
+**Output**: List of all solutions, where each solution is a list showing queen column positions per row
+
+## Example
+```python
+dfs_n_queens(4)  # Returns [[1, 3, 0, 2], [2, 0, 3, 1]]
+
+# [1, 3, 0, 2] means:
+# Row 0: queen in column 1
+# Row 1: queen in column 3
+# Row 2: queen in column 0
+# Row 3: queen in column 2
+```
+
+## Algorithm Structure
+
+**is_safe(board, row, col)** - Checks if position is valid
+- Loop through previous rows
+- Check: same column, both diagonals
+- Return True if no conflicts
+
+**backtrack(board, row)** - Recursively places queens
+- Base case: if row == n, solution found, save it
+- Try each column in current row
+- If safe: place queen, recurse to next row, backtrack (remove queen)
+
+**dfs_n_queens(n)** - Main function
+- Initialize board as [-1] * n
+- Call backtrack starting at row 0
+- Return all solutions
+
+## Key Concepts
+- **Backtracking**: Try solution → if fails, undo and try another
+- **Recursion**: Solve one row at a time
+- **Constraint checking**: Verify no attacks before placing
+
+## Complexity
+- **Time**: O(N!) - tries many combinations, pruned by is_safe
+- **Space**: O(N) - recursion depth + board storage
 
 # Contributing
 
