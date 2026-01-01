@@ -209,6 +209,86 @@ dfs_n_queens(4)  # Returns [[1, 3, 0, 2], [2, 0, 3, 1]]
 ## Complexity
 - **Time**: O(N!) - tries many combinations, pruned by is_safe
 - **Space**: O(N) - recursion depth + board storage
+- 
+
+# Generate Parentheses - BFS
+
+## Overview
+Generates all valid combinations of n pairs of parentheses using breadth-first search.
+
+## Input/Output
+**Input**: Integer (number of pairs)  
+**Output**: List of all valid parentheses combinations
+
+## Example
+```python
+gen_parentheses(3)
+# Returns: ['((()))', '(()())', '(())()', '()(())', '()()()']
+```
+
+## Algorithm
+1. Start with empty string and counters (opens_used=0, closes_used=0)
+2. Use queue for BFS: stores tuples of (current_string, opens, closes)
+3. While queue not empty:
+   - Pop first element
+   - If string length == 2*pairs: add to results (complete solution)
+   - If can add '(': append new state with incremented opens
+   - If can add ')': append new state with incremented closes
+4. Rules:
+   - Can add '(' if opens_used < pairs
+   - Can add ')' if closes_used < opens_used (keeps valid)
+
+## Why It Works
+BFS explores all possible valid paths level by level. Only adds ')' when there are more '(' to ensure validity.
+
+## Complexity
+- **Time**: O(4^n / √n) - Catalan number growth
+- **Space**: O(4^n / √n) - storing all valid combinations
+
+
+# DFS - Depth-First Search
+
+## Overview
+Traverses a graph using depth-first search, visiting all reachable nodes from a starting node.
+
+## Input/Output
+**Input**: Adjacency matrix (2D array) + starting node  
+**Output**: List of visited nodes in DFS order
+
+## Example
+```python
+graph = [[0, 1, 0, 0],
+         [1, 0, 1, 0],
+         [0, 1, 0, 1],
+         [0, 0, 1, 0]]
+
+dfs(graph, 1)  # Returns [1, 2, 3, 0]
+```
+
+## Algorithm
+1. Initialize:
+   - `visited`: list to store traversal order
+   - `stack`: starts with start_node
+   - `seen`: set to track visited nodes
+2. While stack not empty:
+   - Pop last node from stack (LIFO - depth-first)
+   - If not seen: mark as seen, add to visited
+   - Check all neighbors in adjacency matrix
+   - Push unvisited neighbors to stack
+3. Return visited nodes in order
+
+## Key Differences: DFS vs BFS
+- **DFS**: Uses stack (LIFO), goes deep first
+- **BFS**: Uses queue (FIFO), goes level by level
+- **DFS**: `stack.pop()` removes from end
+- **BFS**: `queue.pop(0)` removes from front
+
+## Complexity
+- **Time**: O(V + E) where V=vertices, E=edges
+- **Space**: O(V) for stack and seen set
+
+
+
 
 # Contributing
 
